@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Секундомеры</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div class="wrapper">
+            <Stopwatch v-for="timer of timers" :id="timer.id" :key='timer.id'></Stopwatch>
+            <button class="addtimer" @click="addtimer">+</button>
+        </div>
+    </div>
+
+    <template id="sw">
+        <div class="timer-container" :class="{active: playing}">
+            <div class="timer-time">
+                <span v-show="hours" class="timer-hours">{{hours}}:</span>
+                <span v-show="minutes || hours" class="timer-minutes">{{minutes.toLocaleString('ru-RU',{minimumIntegerDigits: 2})}}:</span>
+                <span class="timer-seconds">{{seconds.toLocaleString('ru-RU',{minimumIntegerDigits: 2})}}</span>
+            </div>
+            <div class="timer-buttons">
+                <div class="play">
+                    <button class="timer-playpause" @click="playpause"></button>
+                </div>
+                <div class="stop">
+                    <button class="timer-stop" @click="stop"></button>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="main.js"></script>
+</body>
+</html>
